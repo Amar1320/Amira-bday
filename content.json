@@ -1,0 +1,10 @@
+{
+  "hint": "Hint: The day you finally said \"YES\" to me.",
+  "photos": [
+    { "file": "photo1.jpg", "caption": "Thank you for being my happiness" },
+    { "file": "photo2.jpg", "caption": "Another month," },
+    { "file": "photo3.jpg", "caption": "Here's to" },
+    { "file": "photo4.jpg", "caption": "Every day with you is a blessing" }
+  ],
+  "letter": "Write your paragraph here.\n\nPut a blank line between paragraphs.\n\nYou can write as much as you want."
+}
