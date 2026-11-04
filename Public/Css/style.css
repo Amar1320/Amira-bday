@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Caveat:wght@500;700&family=Zilla+Slab:wght@500;700&display=swap');
+:root{--red:#b3163f;--rose:#c9506a;--pink:#fbc3d3;--dark:#7a0f2c}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:'Zilla Slab',serif;color:var(--dark)}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 12px;position:relative}
+h1,h2{font-family:'Pixelify Sans',monospace;color:var(--red);margin:0;text-shadow:2px 2px 0 #fff}
+.hand{font-family:'Caveat',cursive}
+
+/* hearts + stars background */
+.bg-hearts{background-color:#fcc9d9;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='360' height='360'><g fill='%23f48fb0' opacity='.55'><path d='M60 70c-22-26-60 0-40 30l40 40 40-40c20-30-18-56-40-30z'/><path d='M270 40c-14-16-38 0-26 18l26 26 26-26c12-18-12-34-26-18z'/><path d='M250 250c-22-26-60 0-40 30l40 40 40-40c20-30-18-56-40-30z'/></g><g fill='%23f06292' opacity='.6'><path d='M170 160l8 18 20 2-15 13 5 19-18-10-18 10 5-19-15-13 20-2z'/><path d='M40 250l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z'/></g><g fill='%23f8a5c2' opacity='.7'><circle cx='320' cy='170' r='8'/><circle cx='120' cy='310' r='7'/><circle cx='150' cy='30' r='6'/></g></svg>");background-size:360px}
+.bg-plaid{background-color:#f4c6cf;background-image:repeating-linear-gradient(0deg,rgba(201,80,106,.55) 0 46px,transparent 46px 130px),repeating-linear-gradient(90deg,rgba(201,80,106,.5) 0 46px,transparent 46px 130px)}
+.bg-plaid.red{background-color:#e0607c}
+
+/* lock */
+.lock h1{font-size:2.6rem;margin-bottom:14px}
+.slots{display:flex;gap:6px;margin-bottom:10px}
+.slot{width:46px;height:46px;background:#fff;border:3px solid #2a0a14;border-radius:8px;display:flex;align-items:center;justify-content:center;font:700 1.7rem 'Pixelify Sans',monospace;color:var(--red)}
+.slot svg{width:28px;height:28px;fill:var(--rose);opacity:.8}
+.hint{font-size:1.05rem;margin:0 0 12px}
+.pad{background:#fff;border:3px solid #111;border-radius:22px;padding:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:146px}
+.pad button{height:44px;border:2px solid var(--red);border-radius:9px;background:#c9506a;color:#fff;font:700 1.1rem 'Pixelify Sans',monospace;cursor:pointer;box-shadow:0 2px 0 #7a0f2c}
+.pad button:active{transform:translateY(2px);box-shadow:none}
+.mailbox{margin-top:16px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:340px}
+.mailbox input{flex:1 1 180px;padding:9px 10px;border:2px solid var(--red);border-radius:8px;font:500 .95rem 'Zilla Slab',serif}
+.mailbox button{padding:9px 12px;border:2px solid var(--red);border-radius:8px;background:var(--rose);color:#fff;font:700 .9rem 'Zilla Slab',serif;cursor:pointer}
+.mailmsg{width:100%;text-align:center;font-size:.9rem;min-height:1.2em}
+
+/* popup */
+.overlay{position:fixed;inset:0;background:rgba(200,50,80,.55);display:none;align-items:center;justify-content:center;z-index:10}
+.overlay.show{display:flex}
+.popup{background:#fff;border:3px solid var(--red);border-radius:14px;padding:12px 22px 16px;text-align:center;width:min(86vw,260px);box-shadow:0 0 40px rgba(255,255,255,.6)}
+.popup h2{font-size:1.5rem;text-shadow:none}
+.popup p{margin:6px 0 10px;font-weight:700;font-size:.9rem}
+.popup .btn{border:2px solid var(--red);background:var(--rose);color:#fff;border-radius:99px;padding:3px 22px;font:700 .85rem 'Zilla Slab',serif;cursor:pointer}
+.sticker{display:block;margin:0 auto;object-fit:contain}
+.popup .sticker{width:120px;height:110px}
+
+/* surprise */
+.surprise h1{font-size:3rem}
+.surprise .sub{font:700 1.5rem 'Caveat',cursive;color:#111;margin:4px 0 26px}
+.gifts{display:grid;grid-template-columns:repeat(4,minmax(0,150px));gap:14px;justify-content:center}
+.gift{background:#f5a5bc;border:3px solid var(--red);border-radius:10px;aspect-ratio:1.05;display:flex;align-items:center;justify-content:center;padding:8px;cursor:pointer;transition:transform .15s}
+.gift:hover{transform:translateY(-6px) rotate(-2deg)}
+.gift .sticker{width:100%;height:100%}
+.back{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:42px;height:42px;border:3px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--red);font:700 1.4rem sans-serif;text-decoration:none;background:transparent}
+@media(max-width:640px){.gifts{grid-template-columns:repeat(2,minmax(0,150px))}.surprise h1{font-size:2.2rem}}
+
+/* pictures */
+.pics{justify-content:flex-start;padding:30px 16px 90px}
+.collage{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;width:min(1000px,100%);align-items:center}
+.collage figure{margin:0;text-align:center}
+.collage img.photo{width:100%;max-height:420px;object-fit:cover;border:8px solid #fff;border-radius:6px;box-shadow:0 6px 18px rgba(122,15,44,.25)}
+.collage figure:nth-child(odd) img.photo{border-color:#c9506a;border-style:dotted;border-width:10px}
+.collage figcaption{font:700 1.7rem 'Caveat',cursive;color:var(--red);margin-top:8px}
+.photo-ph{width:100%;aspect-ratio:3/4;background:#fff8;border:3px dashed var(--red);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font:700 1rem 'Zilla Slab'}
+
+/* flowers */
+.flowers h1{font-size:3.2rem;margin-bottom:10px;text-align:center}
+.bouquet{width:min(300px,70vw);height:auto}
+.tags{display:flex;flex-direction:column;gap:14px;position:absolute;top:30%}
+.tag{background:#fff;border:3px solid #111;border-radius:10px;box-shadow:5px 5px 0 var(--rose);padding:8px 22px;font:700 1.1rem 'Pixelify Sans',monospace;color:#111;white-space:nowrap}
+.tags.l{left:4%}.tags.r{right:4%}
+.tags.l .tag:nth-child(odd){transform:rotate(-4deg)}.tags.r .tag:nth-child(even){transform:rotate(3deg)}
+@media(max-width:700px){.tags{position:static;flex-direction:row;flex-wrap:wrap;justify-content:center;margin:10px 0}.tag{font-size:.9rem;padding:6px 12px}}
+
+/* mail */
+.mail h1{font-size:2.3rem;margin-bottom:18px}
+.env{width:min(300px,78vw);height:200px;background:#d9707f;border:0;position:relative;cursor:pointer;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);display:block}
+.envwrap{position:relative;width:min(300px,78vw);height:200px;cursor:pointer}
+.envwrap svg{width:100%;height:100%}
+.mail .cap{margin-top:14px;font-size:.95rem}
+
+/* letter */
+.letterbg{background:radial-gradient(circle at 50% 22%,#fff 0,#ffd9e6 35%,#f9a8c4 75%);justify-content:flex-start;padding-top:50px}
+.envelope{position:relative;width:min(300px,78vw);height:220px;margin-bottom:40px}
+.envelope .card{position:absolute;left:12%;right:12%;top:-70px;height:170px;background:#fff;border:2px solid #fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font:700 2rem 'Caveat',cursive;color:var(--red);line-height:1.1;z-index:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,.15));padding-bottom:50px;clip-path:polygon(0 4%,5% 0,10% 4%,15% 0,20% 4%,25% 0,30% 4%,35% 0,40% 4%,45% 0,50% 4%,55% 0,60% 4%,65% 0,70% 4%,75% 0,80% 4%,85% 0,90% 4%,95% 0,100% 4%,100% 100%,0 100%)}
+.envelope .pocket{position:absolute;inset:40px 0 0 0;background:#f0a0a6;z-index:2;clip-path:polygon(0 0,50% 45%,100% 0,100% 100%,0 100%)}
+.envelope .flower{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:110px;z-index:3}
+.paper{background:#e8e2cf;border:2px solid #8a1c3c;border-radius:6px;width:min(760px,94vw);padding:28px 30px;text-align:center;font:700 1.45rem/1.45 'Caveat',cursive;color:var(--red);white-space:pre-wrap;box-shadow:0 8px 26px rgba(122,15,44,.2)}
+
+/* cake */
+.cake{justify-content:flex-start;padding-top:20px;padding-bottom:110px}
+.cake h1{font-size:3rem;transform:rotate(-8deg);margin-bottom:-4px;position:relative;z-index:2}
+.cakesvg{width:min(280px,70vw)}
+.cake p{font:700 1.2rem 'Zilla Slab';margin:8px 0}
+.cake .sticker{width:120px;height:110px}
+.flame{transform-origin:50% 100%;animation:fl .5s infinite alternate}
+@keyframes fl{to{transform:scale(1.15,.9)}}
+.out .flame{display:none}
