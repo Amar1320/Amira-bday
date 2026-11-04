@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Letter</title><link rel="stylesheet" href="/css/style.css"></head>
+<body class="letterbg">
+<div class="envelope">
+  <div class="card"><span>Happy</span><span>Birthday,</span><span id="n1"></span></div>
+  <div class="pocket"></div>
+  <svg class="flower" viewBox="0 0 120 120"><g fill="#f08a7a"><circle cx="60" cy="30" r="16"/><circle cx="36" cy="46" r="14"/><circle cx="84" cy="46" r="14"/><circle cx="48" cy="62" r="13"/><circle cx="72" cy="62" r="13"/></g><path d="M60 70v35M45 80l15 25M75 80l-15 25" stroke="#3f7a3a" stroke-width="5"/><path d="M50 100l10-6 10 6-10 6z" fill="#e0405a"/></svg>
+</div>
+<div class="paper"><b id="n2" style="font-size:1.8rem"></b><span id="txt"></span></div>
+<a class="back" href="/surprise" style="position:static;transform:none;margin:28px 0">←</a>
+<script>
+fetch('/api/content').then(r=>r.json()).then(d=>{
+  document.getElementById('n1').textContent=d.name;
+  document.getElementById('n2').textContent='Happy Birthday, '+d.name;
+  document.getElementById('txt').textContent='\n\n'+d.letter;
+});
+</script></body></html>

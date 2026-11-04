@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cake</title><link rel="stylesheet" href="/css/style.css"></head>
+<body class="bg-hearts cake" id="b">
+<h1>Cake for you!</h1>
+<svg class="cakesvg" viewBox="0 0 260 300">
+  <g><g class="flame" fill="#ffb300"><ellipse cx="78" cy="22" rx="5" ry="9"/><ellipse cx="108" cy="20" rx="5" ry="9"/><ellipse cx="152" cy="20" rx="5" ry="9"/><ellipse cx="182" cy="22" rx="5" ry="9"/></g>
+  <g fill="#f39ab0"><rect x="76" y="30" width="4" height="30"/><rect x="106" y="30" width="4" height="30"/><rect x="150" y="30" width="4" height="30"/><rect x="180" y="30" width="4" height="30"/></g></g>
+  <circle cx="130" cy="52" r="14" fill="#e5383b"/>
+  <rect x="62" y="60" width="136" height="60" rx="10" fill="#f6a5bd"/><path d="M62 60h136v26c-10 14-14-6-22 6s-12-8-22 6-14-10-24 6-14-8-24 4-14-8-22 4z" fill="#4a2318"/>
+  <rect x="40" y="120" width="180" height="64" rx="10" fill="#f6a5bd"/><path d="M40 120h180v28c-10 14-14-6-22 6s-12-8-22 6-14-10-24 6-14-8-24 4-14-8-22 4-14-4-22 6z" fill="#4a2318"/>
+  <rect x="16" y="184" width="228" height="90" rx="12" fill="#d9a066"/><rect x="16" y="184" width="228" height="26" fill="#f6a5bd"/><path d="M16 184h228v34c-10 14-14-6-22 6s-12-8-22 6-14-10-24 6-14-8-24 4-14-8-22 4-14-4-22 6-14-8-22 4z" fill="#4a2318"/>
+  <g fill="#e5383b"><circle cx="90" cy="108" r="9"/><circle cx="130" cy="108" r="9"/><circle cx="170" cy="108" r="9"/><circle cx="60" cy="170" r="9"/><circle cx="110" cy="170" r="9"/><circle cx="160" cy="170" r="9"/><circle cx="205" cy="170" r="9"/><circle cx="50" cy="240" r="9"/><circle cx="110" cy="240" r="9"/><circle cx="170" cy="240" r="9"/></g>
+</svg>
+<p>Blow your candle</p>
+<div id="blow" style="cursor:pointer"><span data-sticker="blow"></span></div>
+<a class="back" href="/surprise">←</a>
+<script src="/js/common.js"></script>
+<script>document.getElementById('blow').onclick=()=>document.getElementById('b').classList.toggle('out');</script>
+</body></html>

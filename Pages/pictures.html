@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pictures</title><link rel="stylesheet" href="/css/style.css"></head>
+<body class="bg-hearts pics">
+<div class="collage" id="c"></div>
+<a class="back" href="/surprise">←</a>
+<script src="/js/common.js"></script>
+<script>
+fetch('/api/content').then(r=>r.json()).then(d=>{
+  const c=document.getElementById('c');
+  d.photos.forEach((p,i)=>{
+    const f=document.createElement('figure');
+    const img=new Image();img.className='photo';img.src='/assets/photos/'+p.file;img.alt='';
+    img.onerror=()=>{const ph=document.createElement('div');ph.className='photo-ph';ph.textContent='Put '+p.file+' in assets/photos';img.replaceWith(ph)};
+    f.appendChild(img);
+    if(i===0||i===2)f.appendChild(sticker(i?'photoB':'photoA'));
+    const cap=document.createElement('figcaption');cap.textContent=p.caption;f.appendChild(cap);
+    c.appendChild(f);
+  });
+});
+</script></body></html>
