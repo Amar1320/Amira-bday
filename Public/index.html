@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enter Code</title><link rel="stylesheet" href="/css/style.css"></head>
+<body class="bg-plaid lock" id="page">
+<h1>Enter Code</h1>
+<div class="slots" id="slots"></div>
+<p class="hint" id="hint"></p>
+<div class="pad" id="pad"></div>
+
+<div class="mailbox">
+  <input id="email" type="email" placeholder="Your email — we'll send you the code">
+  <button id="send">Send code</button>
+  <div class="mailmsg" id="mailmsg"></div>
+</div>
+
+<div class="overlay" id="ov"><div class="popup">
+  <h2 id="ovt">Wrong Passcode!</h2>
+  <span data-sticker="sad"></span>
+  <p id="ovp">Try Again?</p>
+  <button class="btn" id="ovb">Retry</button>
+</div></div>
+
+<script src="/js/common.js"></script>
+<script>
+const heart = '<svg viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 5.5-8 11-8 11z"/></svg>';
+let val = '';
+const slots = document.getElementById('slots');
+for (let i=0;i<4;i++){const d=document.createElement('div');d.className='slot';slots.appendChild(d)}
+function render(){[...slots.children].forEach((s,i)=>{s.innerHTML=val[i]||heart})}
+render();
+fetch('/api/hint').then(r=>r.json()).then(d=>document.getElementById('hint').textContent=d.hint);
+const pad=document.getElementById('pad');
+['1','2','3','4','5','6','7','8','9','.','0','DEL'].forEach(k=>{
+  const b=document.createElement('button');b.textContent=k;
+  b.onclick=()=>{
+    if(k==='DEL'){val=val.slice(0,-1)}
+    else if(k!=='.'&&val.length<4){val+=k}
+    render();
+    if(val.length===4) check();
+  };pad.appendChild(b);
+});
+const ov=document.getElementById('ov');
+async function check(){
+  const r=await fetch('/api/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:val})}).then(r=>r.json());
+  document.body.classList.toggle('red',!r.ok);
+  if(r.ok){
+    document.getElementById('ovt').textContent='Correct Passcode!';
+    document.getElementById('ovp').textContent='Welcome!';
+    document.getElementById('ovb').textContent='Open';
+    document.querySelector('.popup .sticker').replaceWith(sticker('happy'));
+    ov.dataset.ok='1';
+  } else {
+    document.getElementById('ovt').textContent='Wrong Passcode!';
+    document.getElementById('ovp').textContent='Try Again?';
+    document.getElementById('ovb').textContent='Retry';
+    document.querySelector('.popup .sticker').replaceWith(sticker('sad'));
+    ov.dataset.ok='';
+  }
+  ov.classList.add('show');
+}
+document.getElementById('ovb').onclick=()=>{
+  if(ov.dataset.ok){location.href='/surprise';return}
+  ov.classList.remove('show');val='';render();document.getElementById('page').classList.remove('red');
+};
+document.getElementById('send').onclick=async()=>{
+  const m=document.getElementById('mailmsg'),email=document.getElementById('email').value;
+  m.textContent='Sending...';
+  try{
+    const r=await fetch('/api/send-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})}).then(r=>r.json());
+    m.textContent=r.ok?'Sent! Check your inbox 💌':(r.error||'Error');
+  }catch(e){m.textContent='Error sending'}
+};
+</script></body></html>
